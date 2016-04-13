@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  * The template for displaying the footer.
  *
@@ -12,13 +12,42 @@
 ?>
 
 	</div><!-- #content -->
-
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'jetstream-aviation' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'jetstream-aviation' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( esc_html__( 'Theme: %1$s by %2$s.', 'jetstream-aviation' ), 'jetstream-aviation', '<a href="http://underscores.me/" rel="designer">Underscores.me</a>' ); ?>
-		</div><!-- .site-info -->
+    <div class="newsletter-signup">
+      <div class="inner">
+        <h5>SIGN UP FOR OUR NEWSLETTER</h5><?php echo do_shortcode('[mc4wp_form id="29"]');?>
+      </div>
+    </div>
+    <div class="inner">
+      <div class="contact-us">
+        <h5><span>Contact Us</span></h5>
+        <div class="contact-info">
+          <div class="address">
+            3591 Rickenbacker Street<br/>Boise, ID 83705
+          </div>
+          <div class="phone">
+            208.345.3730
+          </div>
+          <div class="radio">
+            Boise, Idaho KBOI<br/>Seattle, Washington KBFI
+          </div>
+        </div>
+        <?php echo do_shortcode( '[gravityform id="2" ajax="true" title="false" description="false"]' ); ?>
+      </div>
+      <div class="argus-seal">
+        <div class="inner">
+          <img src="/wp-content/uploads/2016/04/argus-seal.png">
+          <p>Jetstream has proudly obtained the ARG/US Gold International Certification</p>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <div class="inner">
+        <p>
+        &copy;<?php echo date('Y');?> Jetstream Aviation, Inc.
+        </p>
+      </div>
+    </div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

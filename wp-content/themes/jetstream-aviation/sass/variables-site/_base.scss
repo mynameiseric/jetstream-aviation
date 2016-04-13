@@ -1,0 +1,75 @@
+$baseline: 20px;
+
+
+//FONTS
+
+$font__main: Helvetica Neue, Helvetica, sans-serif;
+$font__code: Helvetica Neue, Helvetica, sans-serif;
+$font__pre: "Courier 10 Pitch", Courier, monospace;
+$font__line-height-body: 1.5;
+$font__line-height-pre: 1.6;
+
+$normal-font-weight: 400;
+$bold-font-weight: 700;
+
+$large-font-size: 18px;
+$normal-font-size: 15px;
+$small-font-size: 13px;
+
+//COLORS
+
+$white: #fff;
+$black: #111;
+
+$verylightgray: #f3f3f3;
+$lightgray: #ccc;
+$mediumgray: #999;
+$darkgray: #404040;
+
+$color1: #062c4e; //dark blue
+$color2: lighten( $color1, 20% );
+$color3: lighten( $color1, 40% );
+
+$color__background-body: $white;
+$color__background-screen: #f1f1f1; 
+$color__background-hr: $lightgray;
+$color__background-button: transparent;
+$color__background-pre: #eee;
+$color__background-ins: #fff9c0;
+
+$color__text-screen: #21759b;
+$color__text-input: $color1;
+$color__text-input-focus: $color1;
+$color__link: $color2;
+$color__link-visited: $color2;
+$color__link-hover: $color3;
+$color__text-main: $darkgray;
+
+$color__border-button: $color2;
+$color__border-button-hover: $color3;
+$color__border-button-focus: $color3;
+$color__border-input: $color2;
+$color__border-abbr: $mediumgray;
+
+//BORDER RADIUS
+$default_border_radius: 2px;
+
+//HEADERS
+
+$h1-font-size: 44px;
+$h1-line-height: 48px;
+
+$h2-font-size: 40px;
+$h2-line-height: 44px;
+
+$h3-font-size: 24px;
+$h3-line-height: 28px;
+
+$h4-font-size: 20px;
+$h4-line-height: 24px;
+
+$h5-font-size: 18px;
+$h5-line-height: 22px;
+
+$h6-font-size: 16px;
+$h6-line-height: 20px;

@@ -15,8 +15,9 @@ input[type="datetime-local"],
 input[type="color"],
 textarea {
 	color: $color__text-input;
-	border: 1px solid $color__border-input;
-	border-radius: 3px;
+	border: 2px solid $color__border-input;
+	border-radius: 2px;
+  background: transparent;
 
 	&:focus {
 		color: $color__text-input-focus;
@@ -24,7 +25,8 @@ textarea {
 }
 
 select {
-	border: 1px solid $color__border-input;
+	border: 2px solid $color__border-input;
+  height: $baseline * 2;
 }
 
 input[type="text"],
@@ -42,10 +44,50 @@ input[type="time"],
 input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"] {
-	padding: 3px;
+	padding: 6px;
 }
 
 textarea {
-	padding-left: 3px;
+	padding-left: 6px;
 	width: 100%;
+}
+
+label {
+  @include visually-hidden;
+}
+
+//overwrites for gravity forms
+.request-quote {
+  .ui-datepicker {
+    border: 2px solid $color1;
+  }
+}
+.ui-datepicker {
+  width: 280px;
+  background: $verylightgray;
+  border-radius: 2px;
+  .ui-datepicker-header {
+    padding: 4px;
+    border: 2px solid $verylightgray;
+    .ui-datepicker-prev {
+      position: absolute;
+      left: 8px;
+    }
+    .ui-datepicker-next {
+      position: absolute;
+      right: 8px;
+    }
+    .ui-datepicker-title {
+      text-align: center;
+    }
+  }
+  .ui-datepicker-calendar {
+    background-color: #fff;
+    border: 1px solid $verylightgray;
+    td {
+      text-align: center;
+      border: 1px solid $verylightgray;
+      padding: 4px 0;
+    }
+  }
 }

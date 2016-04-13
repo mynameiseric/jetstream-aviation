@@ -1,5 +1,12 @@
+html, body {
+  height: 100%
+}
 html {
 	box-sizing: border-box;
+}
+
+#wpadminbar {
+  display: none;
 }
 
 *,
@@ -36,3 +43,4 @@ img {
 }
 
 @import "tables";
+

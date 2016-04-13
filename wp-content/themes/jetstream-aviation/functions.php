@@ -7,6 +7,229 @@
  * @package Jetstream_Aviation
  */
 
+new Functions();
+
+class Functions {
+  /**
+   * Sets up the theme and support for WordPress and DrakeCooper
+   * framework functionality.
+   */
+  public function __construct() {
+    $this->constants();
+    $this->manage_site_styles();
+    $this->manage_site_scripts();
+  }
+  
+  /**
+   * Defines the constant paths for use within this theme.
+   *
+   * @since 0.1.0
+   */
+  private function constants() {
+    // Sets the path to the parent theme directory.
+    define( 'THEME_DIR', get_template_directory() );
+
+    // Sets the path to the parent theme directory URI.
+    define( 'THEME_URI', get_template_directory_uri() );
+
+    // Sets the path to the child theme directory.
+    define( 'CHILD_THEME_DIR', get_stylesheet_directory() );
+
+    // Sets the path to the child theme directory URI.
+    define( 'CHILD_THEME_URI', get_stylesheet_directory_uri() );
+
+		// Sets the path to the child theme library directory.
+		define( 'CHILD_THEME_LIB_DIR',  get_stylesheet_directory() . '/library' );
+
+		// Sets the path to the child theme css directory URI.
+		//define( 'CHILD_THEME_CSS_URI', trailingslashit( CHILD_THEME_URI ) . 'library/css' );
+
+		// Sets the path to the child theme images directory URI.
+		define( 'CHILD_THEME_IMG_URI', trailingslashit( CHILD_THEME_URI ) . 'img' );
+
+		// Sets the path to the child theme javascript directory URI.
+		define( 'CHILD_THEME_JS_URI', trailingslashit( CHILD_THEME_URI ) . 'js' );
+    
+   // Sets the path to the child theme fonts.
+		define( 'CHILD_THEME_FONTS_URI', trailingslashit( CHILD_THEME_URI ) . 'fonts' );
+
+  }
+
+  /**
+   * Manage Sitewide Styles
+   */
+  private function manage_site_styles() {
+
+    // Enqueue Styles
+    add_action( 'wp_enqueue_scripts', function() {
+//      global $wp_styles;
+//      // HEADER
+//      wp_enqueue_style(
+//        'style',
+//        trailingslashit( CHILD_THEME_CSS_URI ) . 'style.css',
+//        '',
+//        '',
+//        'all'
+//      );
+//      
+      wp_enqueue_style(
+        'font-awesome',
+        'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css',
+        '',
+        '',
+        'all'
+      );
+      
+/*
+      wp_enqueue_style(
+          'ie8_conditional',
+          trailingslashit( CHILD_THEME_CSS_URI ) . 'style-ie8.css',
+          array( 'style' ),
+          '',
+          'all'
+        );
+      $wp_styles->add_data( 'ie8_conditional', 'conditional', 'IE 8' );
+*/
+    });
+
+//    add_action( 'wp_enqueue_scripts', function() {
+//      wp_dequeue_style( 'main' );
+//      wp_dequeue_style( 'thematic_style' );
+//      wp_deregister_style( 'dc-modal' );
+//    }, 99);
+
+    // HTML5, Correct style links (no id or type attributes)
+    add_filter( 'style_loader_tag', function( $tag ) {
+      $tag = preg_replace( '/\s+id=["\'][^"\']++["\']/', '', $tag );
+      return preg_replace( '/\s+type=["\'][^"\']++["\']/', '', $tag );
+    });
+  }
+
+
+  /**
+   * Manage Sitewide Scripts
+   */
+  private function manage_site_scripts() {
+
+    // Enqueue Scripts, priority: 5
+    add_action( 'wp_enqueue_scripts', function() {
+      // HEADER
+
+        // FOOTER
+        if ( ! is_admin() ) {
+          // jQuery
+          wp_deregister_script( 'jquery' ); // Build jQuery using GoogleAPI
+          wp_register_script(
+              'jquery',
+              '//code.jquery.com/jquery-2.2.3.min.js',
+              false,
+              '2.2.3',
+              false
+            );
+          wp_enqueue_script( 'jquery' );
+
+          // jQuery UI
+//          wp_deregister_script( 'jquery-ui' ); // Build jQuery UI using GoogleAPI
+//          wp_register_script(
+//              'jquery-ui',
+//              '//code.jquery.com/ui/1.11.4/jquery-ui.min.js',
+//              array( 'jquery' ),
+//              '1.11.4',
+//              true
+//            );
+        }
+      }, 5 );
+
+      // Enqueue Scripts, priority: default (10)
+      add_action( 'wp_enqueue_scripts', function() {
+        
+        if ( ! is_admin() ) {
+          // FOOTER
+          if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+            // Dev only scripts
+            wp_enqueue_script(
+                'tweenmax',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/TweenMax.js',
+                array( 'jquery' ),
+                '',
+                false
+            );
+            wp_enqueue_script(
+                'scroll-magic',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/ScrollMagic.js',
+                array( 'jquery' ),
+                '',
+                false
+            );
+            wp_enqueue_script(
+                'scroll-magic-gsap',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/animation.gsap.js',
+                array( 'jquery' ),
+                '',
+                false
+            );
+            wp_enqueue_script(
+                'debug-add-indictors',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/debug.addIndicators.js',
+                array( 'jquery' ),
+                '',
+                false
+            );
+//             	wp_enqueue_script( 
+//                  'jetstream-aviation-skip-link-focus-fix', 
+//                  trailingslashit( CHILD_THEME_JS_URI ) . 'skip-link-focus-fix.js', 
+//                  array(), 
+//                  '20151215', 
+//                  true );
+//
+//              wp_enqueue_script( 
+//                  'jetstream-aviation-navigation', 
+//                  get_template_directory_uri() . '/js/navigation.js', 
+//                  array(), 
+//                  '20151215', 
+//                  true );
+              
+//            wp_enqueue_script(
+//                'colorbox',
+//                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/jquery.colorbox.js',
+//                array( 'jquery' ),
+//                '',
+//                true
+//            );
+//
+            wp_enqueue_script(
+                'main',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'site/main.js',
+                array( 'jquery' ),
+                '',
+                true
+              );
+//
+          } 
+          else {
+            // Production only scripts
+            wp_enqueue_script(
+                'vendor',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'build/' . 'vendor.min.js',
+                array( 'jquery' ),
+                '',
+                true
+              );
+
+            wp_enqueue_script(
+                'site',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'build/' . 'site.min.js',
+                array( 'jquery', 'vendor' ),
+                '',
+                true
+              );
+          }
+        }
+    });
+  }  
+  
+}
+
 if ( ! function_exists( 'jetstream_aviation_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -120,11 +343,37 @@ function jetstream_aviation_scripts() {
 
 	wp_enqueue_script( 'jetstream-aviation-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+//	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+//		wp_enqueue_script( 'comment-reply' );
+//	}
 }
 add_action( 'wp_enqueue_scripts', 'jetstream_aviation_scripts' );
+
+add_action('get_header', 'remove_admin_login_header');
+function remove_admin_login_header() {
+	remove_action('wp_head', '_admin_bar_bump_cb');
+}
+
+function my_nav_wrap() {
+  // default value of 'items_wrap' is <ul id="%1$s" class="%2$s">%3$s</ul>'
+  
+  // open the <ul>, set 'menu_class' and 'menu_id' values
+  $wrap  = '<ul id="%1$s" class="%2$s">';
+  
+  $wrap .= '<div class="swoosh-up"><img src="' . get_template_directory_uri() . '/img/swoosh-up.png"></div>';
+  
+  // get nav items as configured in /wp-admin/
+  $wrap .= '%3$s';
+  
+  $wrap .= '<span class="end-cap"></span>';
+  
+  // close the <ul>
+  $wrap .= '</ul>';
+  // return the result
+  return $wrap;
+}
+
+
 
 /**
  * Implement the Custom Header feature.

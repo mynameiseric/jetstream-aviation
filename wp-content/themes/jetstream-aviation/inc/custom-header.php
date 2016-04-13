@@ -1,4 +1,14 @@
 <?php
+
+class Nav_Link_Wrap extends Walker_Nav_Menu
+{
+  function end_el(&$output, $item, $depth = 0, $args = array())
+  {
+    $indent = str_repeat("\t", $depth);
+    $output .= "$indent</div></li>\n";
+  }
+}
+
 /**
  * Sample implementation of the Custom Header feature.
  *

@@ -1,0 +1,25 @@
+{
+  "name": "jetstream-aviation",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Eric McConnaughay <me@mynameiseric.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "gsap": "^1.18.2",
+    "bower-skrollr": "^0.6.26",
+    "scrollmagic": "^2.0.5"
+  }
+}

@@ -1,7 +1,9 @@
 a {
 	color: $color__link;
+  text-decoration: none;
+  @include transition(color .2s);
 
-	&:visited {
+  &:visited {
 		color: $color__link-visited;
 	}
 	&:hover,

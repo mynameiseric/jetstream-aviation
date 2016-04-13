@@ -1,0 +1,124 @@
+footer {
+  width: 100%;
+/*  position: relative;
+  top: 72px;  */
+  .newsletter-signup {
+//    width: 100%;
+    background: $verylightgray;
+    border-top: $lightgray 1px solid;
+    border-bottom: $lightgray 1px solid;
+    input {
+    border-color: $color2;
+    //  color: $color2;
+    }
+    input[type=submit] {
+      color: $color2;
+      &:hover {
+        color: $color3;
+        border-color: $color3;
+      }
+    }
+    input[type=email] {
+      width: 240px;
+      &:focus {
+        color: $black;
+      }
+    }
+    .inner {
+      width: 1280px;
+      margin: 0 auto;
+      text-align: center;
+      padding: $baseline 0;
+      h5 {
+        display: inline;
+        margin-right: $baseline / 2;
+      }
+      form {
+        display: inline-block;
+      }
+    }
+  }
+  > .inner {
+    width: 1280px;
+    margin: 0 auto;
+    @include pie-clearfix;
+  }
+  .argus-seal {
+    width: 25%;
+    float: right;
+    padding: $baseline / 2;
+    margin-top: $baseline * 4;
+    @include pie-clearfix;
+    img {
+      width: 200px;
+      display: inherit;
+      margin: 0 auto;
+    }
+    p {
+      text-align: center;
+    }
+  }
+  .copyright {
+    background: $verylightgray;
+    border-top: $lightgray 1px solid;
+    border-bottom: $lightgray 1px solid;
+    .inner {
+      width: 1280px;
+      margin: 0 auto;
+      text-align: center;
+      display: table;
+      p {
+        display: table-cell;
+        padding: $baseline 0;
+        font-size: $small_font_size;
+      }
+    }
+   // color: $mediumgray;
+  }
+  
+  .contact-us {
+    width: 75%;
+    float: left;
+    border-right: 1px solid $lightgray;
+    padding-bottom: $baseline * 2;
+
+    @include pie-clearfix;
+    .gform_wrapper {
+      width: 50%;
+      float: left;
+    }
+    .contact-info {
+      width: 50%;
+      float: right;
+    }
+    h5 {
+      text-align: center;
+      width: calc( 100% - #{$baseline * 4});
+      border-bottom: 1px solid $lightgray; 
+      line-height:0.1em; 
+      margin: $baseline * 2 $baseline * 2 $baseline * 2;
+      span {
+        background: $white;
+        padding: 0 10px;
+      }
+    }
+    input, select, textarea {
+      width: calc( 100% - #{$baseline * 2});
+    }
+    textarea {
+      height: $baseline * 5;
+    }
+    form ul {
+      list-style: none;
+      margin-left: $baseline * 2;
+      padding-left: 0;
+      li {
+        margin-bottom: $baseline / 2;
+        width: 100%;
+      }
+    }
+    .gform_footer {
+      margin-left: $baseline * 2;
+    }
+  }
+}

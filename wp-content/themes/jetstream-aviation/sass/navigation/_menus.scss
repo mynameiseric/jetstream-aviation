@@ -1,14 +1,50 @@
 .main-navigation {
 	clear: both;
 	display: block;
-	float: left;
 	width: 100%;
-
+  padding-top: $baseline / 2;
+  .swoosh-up {
+    height: 62px;
+    width: 132px;
+    //margin-top: -$baseline / 2;
+    float: left;
+    margin-left: 300px;
+    //background: url("/wp-content/themes/jetstream-aviation/img/swoosh-up.png") no-repeat scroll 0 0 transparent;
+  }
+  .end-cap {
+    background: url("/wp-content/themes/jetstream-aviation/img/nav-end-cap.png");
+    background-size: contain;
+    width: $baseline;
+    height: $baseline;
+    float: right;
+    position: relative;
+    top: -$baseline;
+    right: -12px;
+  }
+/*  .swoosh-down {
+    height: 62px;
+    width: 132px;
+    //margin-top: -$baseline / 2;
+    position: absolute;
+    right: -52px;
+    //float: right;
+    //margin-left: -300px;
+    //background: url("/wp-content/themes/jetstream-aviation/img/swoosh-down.png") no-repeat scroll 0 0 transparent;
+  }*/
+  
 	ul {
 		display: none;
 		list-style: none;
 		margin: 0;
 		padding-left: 0;
+    &.quote-panel-expanded {
+      > li.current-menu-item:after {
+      //  display: none;
+      }      
+      > li.request-quote-link a {
+        background-color: $color2;
+      }
+    }
 
 		ul {
 			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
@@ -30,9 +66,10 @@
 				}
 			}
 
-			a {
-				width: 200px;
-			}
+/*			a {
+				width: 120px;
+        text-align: center;
+			}*/
 
 			:hover > a,
 			.focus > a {
@@ -47,11 +84,15 @@
 		li.focus > ul {
 			left: auto;
 		}
+    
 	}
 	
 	li {
 		float: left;
 		position: relative;
+    div {
+      background: $color1;
+    }
 
 		&:hover > a,
 		&.focus > a {
@@ -59,8 +100,12 @@
 	}
 	
 	a {
-		display: block;
+		display: inline-block;
 		text-decoration: none;
+    text-transform: uppercase;
+    width: 120px;
+    text-align: center;
+    font-size: $small-font-size;
 	}
 
 	.current_page_item > a,
@@ -69,7 +114,11 @@
 	.current-menu-ancestor > a {
 	}
 }
-
+.menu-primary-menu-container {
+  >ul {
+    float: right;
+  }
+}
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
@@ -82,6 +131,105 @@
 	}
 	.main-navigation ul {
 		display: block;
+    margin-top: -11px;
+    margin-bottom: -10px;
+    >li {
+      //border-top: 8px $color1 solid; 
+      div {
+        padding-top: 8px;
+        display: table;
+        height: 62px;
+      }
+     // margin-top: 8px;
+    //  border-left: 1px $color1 solid;
+    //  height: 54px;
+      display: table;
+      background: $white;
+      a {
+        display: table-cell;
+        @include transition(background-color .2s);
+
+        padding: 8px;
+        vertical-align: middle;
+        color: $color1;
+        text-shadow: 0.5px 0.5px 0px $lightgray;
+        background-color: $white;
+        &:hover {
+          color: $color2;
+          background-color: $verylightgray;
+        }
+      }
+      &.request-quote-link {
+        background: $color1;
+        border-top-right-radius: $baseline;
+        a {
+          color: $white;
+          background: $color1;
+          margin-right: 8px;
+/*          &:after {
+            width: 30px; 
+            height: 30px;
+            content: url("/wp-content/themes/jetstream-aviation/img/request-quote.png");
+          }*/
+          &:hover {
+            background: $color2;
+          }
+        }
+        &:after {
+          content: '';
+          width: 20px;
+          height: 20px;
+          background: $color1;
+          border-bottom-left-radius: 20px;
+        }
+      }
+      &:first-of-type {
+      //  border-top-left-radius: 22px;
+        a {
+          border-top-left-radius: $baseline;
+        }
+      }
+      &:last-of-type {
+        div {
+          border-top-right-radius: $baseline;
+        }
+        a {
+          border-right: 8px $color1 solid;
+          border-top-right-radius: $baseline;
+        }
+      }
+      &:hover {
+        background-color: $verylightgray;
+      }
+      &.current-menu-item {
+        background: $verylightgray;
+        position: relative;
+        border-top-color: $color2;
+        box-sizing: border-box;
+        a {
+          color: $color2;
+          background: $verylightgray;
+        }
+        &:after {
+          z-index: 50;
+          content: "";
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          bottom: -9px;
+          left: 53px;
+          box-sizing: border-box;
+          background-color: $verylightgray;
+          border-bottom: 1px solid black;
+          border-left: 1px solid black;
+          //redo this in compass
+          @include transform-origin(0 0);
+          @include transform(rotate(-45deg));
+          //transform: rotate(-45deg);
+          //@include box-shadow($lightgray -3px 3px 3px 0);
+        }      
+      }
+    }
 	}
 }
 
