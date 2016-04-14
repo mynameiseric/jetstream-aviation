@@ -9,42 +9,29 @@
     //margin-top: -$baseline / 2;
     float: left;
     margin-left: 300px;
-    //background: url("/wp-content/themes/jetstream-aviation/img/swoosh-up.png") no-repeat scroll 0 0 transparent;
+    //background: url("img/swoosh-up.png") no-repeat scroll 0 0 transparent;
   }
   .end-cap {
-    background: url("/wp-content/themes/jetstream-aviation/img/nav-end-cap.png");
+    background: url("img/nav-end-cap.png");
     background-size: contain;
-    width: $baseline;
-    height: $baseline;
+    width: $baseline / 2;
+    height: $baseline / 2;
     float: right;
     position: relative;
-    top: -$baseline;
-    right: -12px;
+    top: -$baseline / 2;
+    right: -2px;
   }
-/*  .swoosh-down {
-    height: 62px;
-    width: 132px;
-    //margin-top: -$baseline / 2;
-    position: absolute;
-    right: -52px;
-    //float: right;
-    //margin-left: -300px;
-    //background: url("/wp-content/themes/jetstream-aviation/img/swoosh-down.png") no-repeat scroll 0 0 transparent;
-  }*/
   
 	ul {
 		display: none;
 		list-style: none;
 		margin: 0;
 		padding-left: 0;
-    &.quote-panel-expanded {
-      > li.current-menu-item:after {
-      //  display: none;
-      }      
+/*    &.quote-panel-expanded {
       > li.request-quote-link a {
         background-color: $color2;
       }
-    }
+    }*/
 
 		ul {
 			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
@@ -148,8 +135,8 @@
       a {
         display: table-cell;
         @include transition(background-color .2s);
-
-        padding: 8px;
+          
+        padding: 8px 8px 7px;
         vertical-align: middle;
         color: $color1;
         text-shadow: 0.5px 0.5px 0px $lightgray;
@@ -158,10 +145,11 @@
           color: $color2;
           background-color: $verylightgray;
         }
+        border-right: 1px solid $lightgray;
       }
       &.request-quote-link {
         background: $color1;
-        border-top-right-radius: $baseline;
+        border-top-right-radius: $baseline / 2;
         a {
           color: $white;
           background: $color1;
@@ -169,7 +157,7 @@
 /*          &:after {
             width: 30px; 
             height: 30px;
-            content: url("/wp-content/themes/jetstream-aviation/img/request-quote.png");
+            content: url("img/request-quote.png");
           }*/
           &:hover {
             background: $color2;
@@ -180,22 +168,22 @@
           width: 20px;
           height: 20px;
           background: $color1;
-          border-bottom-left-radius: 20px;
+          border-bottom-left-radius: $baseline / 2;
         }
       }
       &:first-of-type {
       //  border-top-left-radius: 22px;
         a {
-          border-top-left-radius: $baseline;
+        //  border-top-left-radius: $baseline / 2;
         }
       }
       &:last-of-type {
         div {
-          border-top-right-radius: $baseline;
+         border-top-right-radius: $baseline / 2;
         }
         a {
           border-right: 8px $color1 solid;
-          border-top-right-radius: $baseline;
+        //  border-top-right-radius: $baseline / 2;
         }
       }
       &:hover {
@@ -232,6 +220,13 @@
     }
 	}
 }
+.site-header.quote-panel-expanded {
+  border-color: $color2;
+  li.request-quote-link a {
+    background-color: $color2;
+  }
+}
+
 
 .comment-navigation,
 .posts-navigation,

@@ -23,16 +23,27 @@
         <h5><span>Contact Us</span></h5>
         <div class="contact-info">
           <div class="address">
-            3591 Rickenbacker Street<br/>Boise, ID 83705
+            <div class="fa fa-home" aria-hidden="true"></div>
+            <div class="inner">
+              3591 Rickenbacker Street<br/>Boise, ID 83705<br/><a href="https://goo.gl/maps/YiZ9hpqDFq82" target="_blank">View Map</a>
+            </div>
           </div>
           <div class="phone">
-            208.345.3730
+            <div class="fa fa-phone" aria-hidden="true"></div>
+            <div class="inner">
+              208.345.3730
+            </div>
           </div>
           <div class="radio">
+            <div class="fa fa-map-marker" aria-hidden="true"></div>
+            <div class="inner">
             Boise, Idaho KBOI<br/>Seattle, Washington KBFI
+            </div>
           </div>
         </div>
-        <?php echo do_shortcode( '[gravityform id="2" ajax="true" title="false" description="false"]' ); ?>
+        <?php //echo do_shortcode( '[gravityform id="2" ajax="true" title="false" description="false"]' ); 
+          echo do_shortcode( '[contact-form-7 id="43" title="Contact form 1"]' );
+        ?>
       </div>
       <div class="argus-seal">
         <div class="inner">

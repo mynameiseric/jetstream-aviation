@@ -7,6 +7,8 @@ var $window = jQuery(window)
 ,   isIE = navigator.userAgent.indexOf('Trident', 'msie') != -1 ? true : false
 ,   modalOverlay = $('<div id="modal-overlay">');
 
+window.gwrf;
+
 
 $(window).load(function(){
 
@@ -14,6 +16,7 @@ $(window).load(function(){
 
   var $window          = $(window)
   ,   windowDimensions = getWindowDimensions();
+  
   
   //Call layoutHandler() function to handle events for altering layout on window.load and window.resize
 //  layoutHandler( false );
@@ -46,19 +49,22 @@ $(window).load(function(){
   
   $('#close-request-quote').click(function(e){
     $('#request-quote').slideUp(200).toggleClass('expand');
-    $('#primary-menu').toggleClass('quote-panel-expanded');
+    $('#masthead').toggleClass('quote-panel-expanded');
     e.preventDefault();
   });
   $('.request-quote-link a').click(function(e){
-    if( $('#primary-menu').hasClass('quote-panel-expanded') ) {
+    if( $('#masthead').hasClass('quote-panel-expanded') ) {
       $('#request-quote').slideUp(200).toggleClass('expand');
     }
     else {
       $('#request-quote').slideDown(200).toggleClass('expand');
+      $("html, body").animate({ scrollTop: 0 }, 200);
     }
-    $('#primary-menu').toggleClass('quote-panel-expanded');
+    $('#masthead').toggleClass('quote-panel-expanded');
     e.preventDefault();
   });
+  
+  //$('.gform_wrapper').css('display', 'block', 'important');
   
 
 });//window.onload();
@@ -162,6 +168,7 @@ function removeEmptyColorboxTitles() {
     $('#cboxLoadedContent').css('margin-bottom', '0');
   }
 }
+
 
 
 //------------------------------------------------------------------------------

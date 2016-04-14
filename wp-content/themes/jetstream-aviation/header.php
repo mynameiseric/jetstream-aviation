@@ -55,7 +55,7 @@
   <section id="request-quote" class="request-quote">
     <div class="inner">
       <a href="#" id="close-request-quote"><span class="fa fa-times-circle"></span></a>
-      <h4>Call us at 208.555.5555 or fill out the form below:</h4>
+      <h4>Call us at 208.345.3730 or fill out the form below</h4>
       <?php echo do_shortcode( '[gravityform id="1" ajax="true" title="false" description="false"]' ); ?>
     </div>
   </section>

@@ -8,15 +8,15 @@ footer {
     border-top: $lightgray 1px solid;
     border-bottom: $lightgray 1px solid;
     input {
-    border-color: $color2;
+    //border-color: $color2;
     //  color: $color2;
     }
     input[type=submit] {
-      color: $color2;
+/*      color: $color2;
       &:hover {
         color: $color3;
         border-color: $color3;
-      }
+      }*/
     }
     input[type=email] {
       width: 240px;
@@ -44,6 +44,7 @@ footer {
     @include pie-clearfix;
   }
   .argus-seal {
+    display: none;
     width: 25%;
     float: right;
     padding: $baseline / 2;
@@ -61,7 +62,7 @@ footer {
   .copyright {
     background: $verylightgray;
     border-top: $lightgray 1px solid;
-    border-bottom: $lightgray 1px solid;
+  //  border-bottom: $lightgray 1px solid;
     .inner {
       width: 1280px;
       margin: 0 auto;
@@ -78,25 +79,37 @@ footer {
   
   .contact-us {
     width: 75%;
-    float: left;
-    border-right: 1px solid $lightgray;
+    margin: 0 auto;
+   // float: left;
+   // border-right: 1px solid $lightgray;
     padding-bottom: $baseline * 2;
 
     @include pie-clearfix;
-    .gform_wrapper {
+    .wpcf7 {
       width: 50%;
       float: left;
+      p {
+        margin: -15px 0 0;
+        &:first-of-type {
+          margin-top: -$baseline;
+        }
+      }
+      input[type=submit] {
+        margin-top: 18px;
+      }
     }
     .contact-info {
       width: 50%;
       float: right;
+      padding-left: $baseline * 4;
+      padding-top: $baseline / 2;
     }
     h5 {
       text-align: center;
-      width: calc( 100% - #{$baseline * 4});
+     // width: calc( 100% - #{$baseline * 4});
       border-bottom: 1px solid $lightgray; 
       line-height:0.1em; 
-      margin: $baseline * 2 $baseline * 2 $baseline * 2;
+      margin: $baseline * 2 0 $baseline * 2;
       span {
         background: $white;
         padding: 0 10px;
@@ -117,8 +130,41 @@ footer {
         width: 100%;
       }
     }
-    .gform_footer {
+/*    .gform_footer {
       margin-left: $baseline * 2;
+    }*/
+  }
+  .contact-info > div {
+    //padding-left: $baseline;
+    display: table;
+    margin-bottom: $baseline;
+    div {
+      display: table-cell;
+      vertical-align: middle;
+      &:first-of-type {
+        float: left;
+        //height: 100%;
+        width: $baseline * 2;
+/*        display: table-cell;
+        vertical-align: middle;*/
+        font-size: $baseline;
+      }
     }
+    .inner {
+      float: right;
+      width: auto;
+/*      vertical-align: middle;*/
+    }
+/*    &:before {
+      font: $font_awesome;
+      font-size: $baseline * 1.5;
+      content: '\f015';
+      margin-right: $baseline;
+      position: relative;
+      top: $baseline;
+      color: $color1;
+      width: $baseline * 2;
+      height: $
+    }*/
   }
 }

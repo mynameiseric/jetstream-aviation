@@ -6,13 +6,14 @@
   z-index: 100;
   width: 100%;
   background: $white;
+  @include transition(border-color, .2s);
   .container {
     width: 1280px;
     margin: 0 auto;
   }
 }
 .nav-home {
-  background: url("/wp-content/themes/jetstream-aviation/img/jetstream-aviation-logo.png") no-repeat scroll 0 0 transparent;
+  background: url("img/jetstream-aviation-logo.png") no-repeat scroll 0 0 transparent;
   background-size: contain;
   position: absolute;
   height: 50px;
@@ -48,7 +49,7 @@
   padding-top: 72px;
   height: 0;
   //background: $color2;
-  background: url("/wp-content/themes/jetstream-aviation/img/cloud-background.png") no-repeat top left $color2;
+  background: url("img/cloud-background.png") no-repeat top left $color2;
   //background-size: contain;
   z-index: 1000;
   //margin-top: -1px;
@@ -98,13 +99,26 @@
     width: 280px;
     margin: $baseline / 2 $baseline $baseline / 2 0;
     background: $color2;
+    border-color: $lightgray;
+    color: $lightgray;
   }
   input[type="text"] {
     @include opacity(0.9);
+    &:focus {
+      border-color: $white;
+      color: $white;
+    }
   }
 
   textarea {
     width: 100%;
+    border-color: $lightgray;
+    color: $lightgray;
+    &:focus {
+      border-color: $white;
+      color: $white;
+    }
+
   }
   .ginput_container_date {
     //display: inline-block;
@@ -116,7 +130,7 @@
     }*/
     margin-right: -22px;
     &:after {
-      font: normal normal normal 20px/1 FontAwesome;
+      font: $font_awesome;
       color: $lightgray;
       content: "\f073";
       position: relative;
@@ -146,12 +160,19 @@
     height: 2em;
     width: 2em;
   }
+  .gf_repeater_remove {
+    margin-left: $baseline;
+  }
 /*  .gf_repeater_remove .gf_repeater_remove_default {
     margin-left: $baseline;
   }*/
   input[type=submit] {
     margin: $baseline / 2 auto 0;
     display: block;
+    &:hover {
+      border-color: $white;
+      color: $white;
+    }
   }
   .check-add-notes {
     float: none;
@@ -191,7 +212,7 @@
     color: $lightgray;
     float: right;
     position: relative;
-    top: $baseline / 2;
+    top: $baseline;
     span {
       font-size: $baseline * 2;
     }

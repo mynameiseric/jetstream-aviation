@@ -16,17 +16,37 @@ input[type="color"],
 textarea {
 	color: $color__text-input;
 	border: 2px solid $color__border-input;
-	border-radius: 2px;
+	@include border-radius($default_border_radius);
   background: transparent;
+  outline: 0;
 
 	&:focus {
+    border-color: $color3;
 		color: $color__text-input-focus;
 	}
 }
 
 select {
 	border: 2px solid $color__border-input;
+ // border: 0;
+  //outline: 2px solid $color__border-input;
+
   height: $baseline * 2;
+  @include border-radius($default_border_radius);
+  padding: 6px;
+  background: transparent;
+/*  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;*/
+  width: 278px;
+  //border-color: #444 #333 #333 #444!important;
+  //background: url(../images/down-arrow.png) no-repeat 254px 12px;
+  .gf_placeholder {
+    color: $mediumgray;
+  }
+/*  &:first-of-type {
+    color: $mediumgray;
+  }*/
 }
 
 input[type="text"],
@@ -90,4 +110,15 @@ label {
       padding: 4px 0;
     }
   }
+}
+select.ui-datepicker-month, select.ui-datepicker-year {
+ // -webkit-appearance: list-box; 
+ width: auto;
+ height: 24px;
+ margin: 0 2px;
+ padding: 0;
+}
+
+.ui-datepicker {
+  z-index: 1000 !important;
 }
