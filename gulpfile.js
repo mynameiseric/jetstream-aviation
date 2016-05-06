@@ -39,22 +39,9 @@ var fonts = [
 
 // Vendor js to be minified and concatentated into js/vendor.min.js
 var jsVendor = [
-  'bower_components/gsap/src/uncompressed/TweenMax.js',
-  'bower_components/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js',
-  'bower_components/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js',
-  'bower_components/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js',
-  'bower_components/bower-skrollr/skrollr.js',
-  // 'bower_components/v3-utility-library/infobox/src/infobox.js',
-  // 'bower_components/v3-utility-library/markerclustererplus/src/markerclusterer.js',
-  //'bower_components/jquery-colorbox/jquery.colorbox.js',
-  // 'bower_components/slick-carousel/slick/slick.js',
-  // 'bower_components/jquery.scrollTo/jquery.scrollTo.js',
-  // 'bower_components/jquery-countTo/jquery.countTo.js',
-  // 'bower_components/matchHeight/jquery.matchHeight.js',
-  // 'bower_components/ui-select/dist/select.js',
-  // 'bower_components/jquery-touchswipe/jquery.touchSwipe.js',
-  // 'bower_components/Responsive-Menu/jquery.mobilemenu.js',
-  // 'bower_components/dc-srcload/srcload.js',
+    'bower_components/imagesLoaded/imagesLoaded.pkgd.js',    
+    'bower_components/isotope/dist/isotope.pkgd.js',    
+    'bower_components/jquery_lazyload/jquery.lazyload.js'
 ];
 
 // Vendor js that is not to be concatenated for production.

@@ -1,27 +1,32 @@
 footer {
   width: 100%;
-/*  position: relative;
-  top: 72px;  */
   .newsletter-signup {
-//    width: 100%;
     background: $verylightgray;
     border-top: $lightgray 1px solid;
     border-bottom: $lightgray 1px solid;
-    input {
-    //border-color: $color2;
-    //  color: $color2;
-    }
     input[type=submit] {
-/*      color: $color2;
-      &:hover {
-        color: $color3;
-        border-color: $color3;
-      }*/
+      @include media("<480px") {
+        width: 100%;
+      }
     }
     input[type=email] {
       width: 240px;
+      @include media("<480px") {
+        width: 100%;
+        margin-bottom: $baseline / 2;
+      }
       &:focus {
         color: $black;
+      }
+    }
+    .mc4wp-response {
+      color: $color5;
+      max-width: 300px;
+      text-align: left;
+      p {
+        text-align: left;
+        font-weight: bold;
+        font-style: italic;
       }
     }
     .inner {
@@ -29,9 +34,21 @@ footer {
       margin: 0 auto;
       text-align: center;
       padding: $baseline 0;
+      @include media("<1280px") {
+        width: calc(100% - #{$baseline});
+        padding: $baseline;
+      }
       h5 {
         display: inline;
         margin-right: $baseline / 2;
+        vertical-align: top;
+        position: relative;
+        top: 10px;
+        @include media("<=1000px") {
+          display: block;
+          margin-bottom: $baseline;
+          margin-right: 0;
+        }
       }
       form {
         display: inline-block;
@@ -41,53 +58,88 @@ footer {
   > .inner {
     width: 1280px;
     margin: 0 auto;
+    @include media("<1280px") {
+      width: calc(100% - #{$baseline});
+      padding: $baseline;
+    }
     @include pie-clearfix;
   }
   .argus-seal {
-    display: none;
-    width: 25%;
-    float: right;
-    padding: $baseline / 2;
-    margin-top: $baseline * 4;
+    float: left;
+    margin-top: -33px;
+    @include media("<=1000px") {
+      float: none;
+      margin-top: 0;
+      margin-bottom: $baseline;
+    }
     @include pie-clearfix;
     img {
-      width: 200px;
+      width: 130px;
+      @include media("<=1000px") {
+        width: 180px;
+      }
       display: inherit;
       margin: 0 auto;
-    }
-    p {
-      text-align: center;
     }
   }
   .copyright {
     background: $verylightgray;
     border-top: $lightgray 1px solid;
-  //  border-bottom: $lightgray 1px solid;
     .inner {
       width: 1280px;
       margin: 0 auto;
       text-align: center;
       display: table;
+      @include media("<1280px") {
+        width: calc(100% - #{$baseline});
+        padding: $baseline;
+      }
+      .facebook {
+        display: table-cell;
+        vertical-align: middle;
+        margin-left: $baseline;
+        position: relative;
+        top: 2px;
+        text-align: right;
+        span {
+          @include visually-hidden;
+        }
+        color: $color1;
+        @include transition(color, .2s);
+        &:hover {
+          color: $color2;
+        }
+        &:before {
+          font: $font-awesome;
+          content: '\f230';
+          font-size: $baseline * 2.5;
+          width: $baseline * 2.5;
+          height: $baseline * 2.5;
+         // color: $color2;
+        }
+      }
       p {
         display: table-cell;
         padding: $baseline 0;
         font-size: $small_font_size;
+        text-align: left;
       }
     }
-   // color: $mediumgray;
   }
   
   .contact-us {
-    width: 75%;
+    width: 100%;
     margin: 0 auto;
-   // float: left;
-   // border-right: 1px solid $lightgray;
     padding-bottom: $baseline * 2;
 
     @include pie-clearfix;
-    .wpcf7 {
+    .gform_wrapper {
       width: 50%;
       float: left;
+      @include media("<=800px") {
+        float: none;
+        width: 100%;
+      }
       p {
         margin: -15px 0 0;
         &:first-of-type {
@@ -95,18 +147,49 @@ footer {
         }
       }
       input[type=submit] {
-        margin-top: 18px;
+     //   margin-top: 18px;
       }
+    }
+    .gform_confirmation_message {
+      font-size: $large-font-size;
+      color: $color5;
+      font-weight: bold;
+      font-style: italic;
     }
     .contact-info {
       width: 50%;
       float: right;
-      padding-left: $baseline * 4;
+     // padding-left: $baseline * 4;
       padding-top: $baseline / 2;
+      @include media("<=800px") {
+        float: none;
+        width: 100%;
+      }
+      @include media(">800px", "<=1280px") {
+        padding-left: $baseline * 2;
+      }
+      @include pie-clearfix;
+      > div {
+        float: left;
+        width: 300px;
+        @include pie-clearfix;
+        &:first-of-type {
+          margin-right: $baseline;
+          margin-left: $baseline;
+        }
+        @include media("<=1280px") {
+          width: 100%;
+          float: none;
+          &:first-of-type {
+            margin-right: 0;
+            margin-left: 0;
+          }
+        }
+      }
+      
     }
     h5 {
       text-align: center;
-     // width: calc( 100% - #{$baseline * 4});
       border-bottom: 1px solid $lightgray; 
       line-height:0.1em; 
       margin: $baseline * 2 0 $baseline * 2;
@@ -115,36 +198,48 @@ footer {
         padding: 0 10px;
       }
     }
+    h6 {
+      margin-top: 0;
+      margin-bottom: $baseline;
+      background: $color1;
+      color: $verylightgray;
+      text-shadow: none;
+      padding: 4px 8px;
+      font-weight: $normal-font-weight;
+    }
     input, select, textarea {
       width: calc( 100% - #{$baseline * 2});
+      @include media("<=1280px") {
+        width: 100%;
+      }
     }
     textarea {
       height: $baseline * 5;
     }
     form ul {
       list-style: none;
-      margin-left: $baseline * 2;
+      //margin-left: $baseline * 2;
+      margin-left: 0;
       padding-left: 0;
+      margin-bottom: 0;
       li {
         margin-bottom: $baseline / 2;
         width: 100%;
       }
     }
-/*    .gform_footer {
-      margin-left: $baseline * 2;
-    }*/
   }
-  .contact-info > div {
+  .contact-info > div > div {
     //padding-left: $baseline;
     display: table;
     margin-bottom: $baseline;
+    margin-left: $baseline / 2;
     div {
       display: table-cell;
       vertical-align: middle;
       &:first-of-type {
         float: left;
         //height: 100%;
-        width: $baseline * 2;
+        width: $baseline * 1.5;
 /*        display: table-cell;
         vertical-align: middle;*/
         font-size: $baseline;
@@ -166,5 +261,25 @@ footer {
       width: $baseline * 2;
       height: $
     }*/
+  }
+  .fa {
+    color: $color1;
+  }
+  .fa-phone {
+    &:before {
+      margin-left: 1px;
+    }
+  }
+  .fa-map-marker {
+    &:before {
+      font-size: 22px;
+      margin-left: 4px;
+    }
+  }
+}
+.page-request-a-quote {
+  .site-footer .contact-us .contact-info {
+    margin: 0 auto;
+    float: none;
   }
 }

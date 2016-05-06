@@ -146,61 +146,34 @@ class Functions {
         if ( ! is_admin() ) {
           // FOOTER
           if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+            
             // Dev only scripts
             wp_enqueue_script(
-                'tweenmax',
-                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/TweenMax.js',
+                'imagesLoaded',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/' . 'imagesLoaded.pkgd.js',
                 array( 'jquery' ),
                 '',
                 false
             );
             wp_enqueue_script(
-                'scroll-magic',
-                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/ScrollMagic.js',
+                'isotope',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/isotope.pkgd.js',
                 array( 'jquery' ),
                 '',
                 false
             );
             wp_enqueue_script(
-                'scroll-magic-gsap',
-                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/animation.gsap.js',
+                'lazyload',
+                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/jquery.lazyload.js',
                 array( 'jquery' ),
                 '',
                 false
             );
-            wp_enqueue_script(
-                'debug-add-indictors',
-                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/debug.addIndicators.js',
-                array( 'jquery' ),
-                '',
-                false
-            );
-//             	wp_enqueue_script( 
-//                  'jetstream-aviation-skip-link-focus-fix', 
-//                  trailingslashit( CHILD_THEME_JS_URI ) . 'skip-link-focus-fix.js', 
-//                  array(), 
-//                  '20151215', 
-//                  true );
-//
-//              wp_enqueue_script( 
-//                  'jetstream-aviation-navigation', 
-//                  get_template_directory_uri() . '/js/navigation.js', 
-//                  array(), 
-//                  '20151215', 
-//                  true );
-              
-//            wp_enqueue_script(
-//                'colorbox',
-//                trailingslashit( CHILD_THEME_JS_URI ) . 'vendor/jquery.colorbox.js',
-//                array( 'jquery' ),
-//                '',
-//                true
-//            );
-//
+
             wp_enqueue_script(
                 'main',
                 trailingslashit( CHILD_THEME_JS_URI ) . 'site/main.js',
-                array( 'jquery' ),
+                array( 'isotope' ),
                 '',
                 true
               );
@@ -219,7 +192,7 @@ class Functions {
             wp_enqueue_script(
                 'site',
                 trailingslashit( CHILD_THEME_JS_URI ) . 'build/' . 'site.min.js',
-                array( 'jquery', 'vendor' ),
+                array( 'isotopeq', 'vendor' ),
                 '',
                 true
               );
@@ -373,6 +346,198 @@ function my_nav_wrap() {
   return $wrap;
 }
 
+/**
+ *  REDUX 
+ */
+//if ( class_exists( 'Redux' ) ) {
+//  Redux::setArgs( 
+//     'home_page_panels', // This is your opt_name, 
+//     array( // This is your arguments array 
+//         'display_name' => 'Homepage Panels', 
+//         //'display_version' => 'v1', 
+//         'menu_title' => 'Homepage Panels', 
+//         'admin_bar' => 'true', 
+//         'page_slug' => 'tuts_plus_page_slug', // Must be one word, no special characters, no spaces 
+//         'menu_type' => 'menu', // Menu or submenu 
+//         'allow_sub_menu' => true, 
+//     ) 
+//  );
+//}
+
+add_action( 'init', 'create_post_type' );
+function create_post_type() {
+  register_post_type( 'homepage_panel',
+    array(
+      'labels' => array(
+        'name' => __( 'Home Panels' ),
+        'singular_name' => __( 'Homepage Panel' )
+      ),
+      'public' => true,
+      'supports' => array(
+        'title',
+        'editor',
+        'revisions',
+        'thumbnail',
+        'author',
+        'page-attributes',
+      ),
+      'has_archive' => true,
+      'menu_icon'           => 'dashicons-admin-home'
+    )
+  );
+  register_post_type( 'fleet',
+    array(
+      'labels' => array(
+        'name' => __( 'Charter Fleet' ),
+        'singular_name' => __( 'Charter Aircraft' )
+      ),
+      'public' => true,
+//      'register_meta_box_cb' => 'add_fleet_metaboxes',
+      'supports' => array(
+        'title',
+        'excerpt',
+        'editor',
+        'revisions',
+        'thumbnail',
+        'author',
+        'page-attributes',
+      ),
+      'has_archive' => true,
+      'menu_icon'           => 'dashicons-cloud'
+    )
+  );
+  register_post_type( 'rental',
+    array(
+      'labels' => array(
+        'name' => __( 'Rental Fleet' ),
+        'singular_name' => __( 'Rental Aircraft' )
+      ),
+      'public' => true,
+//      'register_meta_box_cb' => 'add_fleet_metaboxes',
+      'supports' => array(
+        'title',
+        'excerpt',
+        'editor',
+        'revisions',
+        'thumbnail',
+        'author',
+        'page-attributes',
+      ),
+      'has_archive' => true,
+      'menu_icon'           => 'dashicons-cloud'
+    )
+  );
+  register_post_type( 'sale',
+    array(
+      'labels' => array(
+        'name' => __( 'Aircraft for Sale' ),
+        'singular_name' => __( 'Aircraft for Sale' )
+      ),
+      'public' => true,
+//      'register_meta_box_cb' => 'add_fleet_metaboxes',
+      'supports' => array(
+        'title',
+        'excerpt',
+        'editor',
+        'revisions',
+        'thumbnail',
+        'author',
+        'page-attributes',
+      ),
+      'has_archive' => true,
+      'menu_icon'           => 'dashicons-cloud'
+    )
+  );
+}
+
+
+class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
+ 
+  // Set the properties of the element which give the ID of the current item and its parent
+//  var $db_fields = array( 'parent' => 'parent_id', 'id' => 'object_id' );
+  
+  function display_element($element, &$children_elements, $max_depth, $depth=0, $args, &$output) {
+      $id_field = $this->db_fields['id'];
+      if (!empty($children_elements[$element->$id_field])) { 
+      //    $element->classes[] = 'arrow'; //enter any classname you like here!
+          $element->title .= '<a href="#" class="expand-children"></a>'; 
+      }
+      Walker_Nav_Menu::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+  }
+
+  // Displays start of a level. E.g '<ul>'
+  // @see Walker::start_lvl()
+//  function start_lvl(&$output, $depth=0, $args=array()) {
+//    $output .= "\n<ul>\n";
+//  }
+//
+//  // Displays end of a level. E.g '</ul>'
+//  // @see Walker::end_lvl()
+//  function end_lvl(&$output, $depth=0, $args=array()) {
+//    $output .= "</ul>\n";
+//  }
+//
+//  // Displays start of an element. E.g '<li> Item Name'
+//  // @see Walker::start_el()
+//  function start_el(&$output, $item, $depth=0, $args=array()) {
+//    $output .= "<li>".esc_attr($item->label);
+//  }
+//
+//  // Displays end of an element. E.g '</li>'
+//  // @see Walker::end_el()
+//  function end_el(&$output, $item, $depth=0, $args=array()) {
+//    if( $item->hasChildren ) {
+//      $output .= "<a href='#' class='expand-child-menu-items'></a>";
+//    }
+//    $output .= "</li>\n";
+//  } 
+}
+//$elements=array(); // Array of elements
+//echo Custom_Walker_Nav_Menu::walk($elements);
+
+
+//Page Slug Body Class
+function add_slug_body_class( $classes ) {
+global $post;
+if ( isset( $post ) ) {
+  $classes[] = $post->post_type . '-' . $post->post_name;
+}
+return $classes;
+}
+add_filter( 'body_class', 'add_slug_body_class' );
+
+//Turn off autocomplete on gravity forms
+add_filter( 'gform_form_tag', 'gform_form_tag_autocomplete', 11, 2 );
+function gform_form_tag_autocomplete( $form_tag, $form ) {
+	if ( is_admin() ) return $form_tag;
+	if ( GFFormsModel::is_html5_enabled() ) {
+		$form_tag = str_replace( '>', ' autocomplete="off">', $form_tag );
+	}
+	return $form_tag;
+}
+add_filter( 'gform_field_content', 'gform_form_input_autocomplete', 11, 5 ); 
+function gform_form_input_autocomplete( $input, $field, $value, $lead_id, $form_id ) {
+	if ( is_admin() ) return $input;
+	if ( GFFormsModel::is_html5_enabled() ) {
+		$input = preg_replace( '/<(input|textarea)/', '<${1} autocomplete="off" ', $input ); 
+	}
+	return $input;
+}
+
+
+//Remove Comments tab from Wordpress admin
+function remove_menus(){  
+  remove_menu_page( 'edit-comments.php' );          //Comments
+  remove_menu_page( 'edit.php' );                   //Posts
+}
+add_action( 'admin_menu', 'remove_menus' );
+
+
+
+/**
+ * Add Theme Settings panel to admin
+ */
+//add_menu_page( 'Theme Settings', 'Theme Settings', '', 'theme_settings', $function, $icon_url, $position );
 
 
 /**

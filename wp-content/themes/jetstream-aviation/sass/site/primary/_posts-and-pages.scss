@@ -3,7 +3,13 @@
 }
 
 .hentry {
-	margin: 0 0 1.5em;
+	margin: 0 0 $baseline;
+}
+.page .hentry {
+  margin-bottom: 0;
+}
+.page-private-charter .hentry {
+//  margin-bottom: $baseline;
 }
 
 .byline,
@@ -27,7 +33,7 @@
 	margin: 0 0 1.5em;
 }
 
-.site-content {
+.page .site-content {
 /*  position: relative;
   top: 72px;
   margin-bottom: $baseline;*/
@@ -40,14 +46,11 @@
 }*/
 section.panel {
   //height: 100%;
-  height: 800px;
+  height: 700px;
   width: 100%;
   text-align: center;
   display: table;
   margin-top: 4px;
-  &:first-of-type {
-    margin-top: 0;
-  }
   &.about-jetstream {
     .button {
       border-color: $lightgray;
@@ -88,7 +91,9 @@ section.panel {
       background: rgba(255,255,255,0.9);
       width: 600px;
       padding: $baseline;
-
+      @include media('<=600px') {
+        width: 100%;
+      }
       h2 {
         margin-top: 0;
         margin-bottom: $baseline / 2;
@@ -96,28 +101,1141 @@ section.panel {
         width: 100%;
         font-style: italic;
       }
-      h4 {
+      p {
         line-height: 30px;
-        text-transform: none;
+       // text-transform: uppercase;
         width: 100%;
-        margin-top: 10px;
+        margin-top: $baseline * 1.5;
+        &:first-of-type {
+          margin-top: 10px;
+        }
         //background: rgba(255,255,255,0.7);
         color: $black;
-      }
-      p {
+        //font-weight: $bold-font-weight;
         font-size: $large-font-size;
+        text-align: left;
+        //text-shadow: 0.5px 0.5px 0px $lightgray;
+        a {
+          text-shadow: none;
+        }
+        .button {
+          margin-top: $baseline * 1.5;
+        }
+      }
+    }
+  }
+  &.dark-bg {
+  //  margin-top: 0;
+     @include media("<820px") { 
+       display: table;
+     }
+    .wrapper  {
+      display: block;
+     // margin-top: 72px;
+      margin-top: $baseline * 3 + 72px;
+      @include media("<820px") { 
+        margin-top: 0;
+        display: table-cell;
+        vertical-align: middle;
+      }
+      background: rgba(6, 44, 78, 0.7);
+      height: auto;
+      .inner {
+       // transform: skew(-35deg);  /* SKEW */
+        width: auto;
+        max-width: 1280px;
+        height: auto;
+        display: table;
+/*        @include media("<820px") { 
+          display: table-cell;
+          vertical-align: middle;
+        }*/
+        background: none;
+       // padding-top: $baseline;
+        padding: 0 $baseline;
+        @include pie-clearfix;
+        > span {
+          margin: 0 $baseline * 2;
+          transform: skew(-20deg);
+          background: $color3;
+          width: 8px;
+          height: 100%;
+          display: inline-block;
+          @include media("<820px") {
+            display: none;
+          }
+        }
+        h2 {
+          color: $white;
+          margin-top: 0;
+          margin-bottom: $baseline;
+          padding-top: $baseline;
+          padding-bottom: $baseline;
+          width: 50%;
+          display: table-cell;
+          @include media("<820px") {
+            width: 100%;
+            display: inline-block;
+            margin-bottom: 0;
+            padding-bottom: $baseline;
+            border-bottom: 1px solid $color3;
+          }
+          vertical-align: middle;
+        }
+        p {
+          padding-top: $baseline;
+          padding-bottom: $baseline;
+          color: $white;
+        //  float: left;
+          width: 50%;
+          @include media("<820px") {
+            width: 100%;
+            display: inline-block;
+          }
+          display: table-cell;
+          vertical-align: middle;
+          font-size: 20px;
+          &:first-of-type {
+            margin: 0;
+          }
+          .button {
+            display: inline-block;
+            margin-top: $baseline;
+            color: $color3;
+            //color: $lightgray;
+          }
+        //  transform: skew(35deg);  /* SKEW */
+        }
+
+      }
+    }
+  }
+  &.light-bg {
+    @extend .dark-bg;
+    .wrapper  {
+      background: rgba(243, 243, 243, 0.8);
+      .inner {
+       // transform: skew(-35deg);  /* SKEW */
+        @include pie-clearfix;
+        > span {
+          background: $color3;
+        }
+        h2 {
+          color: $color1;
+        }
+        p {
+          color: $color1;
+        //  float: left;
+        }
+      }
+    }
+  }
+  &:first-of-type {
+    margin-top: 72px;
+  }
+  &:last-of-type {
+    background: $color2 !important;
+    .wrapper {
+      background: none;
+      margin-top: $baseline;
+      .inner {
+        background: none;
+        width: auto;
+        max-width: 1280px;
+        display: block;
+        h2 {
+          width: 100%;
+          display: inline-block;
+          color: $white;
+          margin-top: 0;
+          margin-bottom: $baseline;
+        }
+        p {
+  /*        float: left;*/
+          max-width: 800px;
+          color: $white;
+          margin: 0 auto;
+  /*        &:first-of-type {
+            margin-right: $baseline * 2;
+          }*/
+          img {
+            max-width: 800px;
+            margin: 0 auto;
+          }
+          @include media("<840px") { 
+            img {
+              width: calc(100% - #{$baseline * 2});
+            }
+          }
+          @include media("<=1280px") {
+            img {
+              margin-bottom: $baseline * 3;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.next-panel-arrow, #footer-arrow {
+  background: $white;
+  height:45px;
+  width:90px;
+  display: table;
+  position: absolute;
+  left: calc(50% - 45px);
+  @include transform(translateY(-41px));
+  @include border-radius(90px 90px 0 0);
+  span {
+    height: 30px;
+    width: 100%; 
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 2px;
+    color: $color1;
+    padding-top: 5px;
+    @include transition(color, .2s);
+    &:hover {
+      color: $color2;
+    }
+    &:before {
+      font: $font-awesome;
+      content: '\f103';
+      font-size: 40px;
+    }
+  }
+}
+#footer-arrow {
+  padding-top: 7;
+  @include transform(translateY(-44px));
+}
+.entry-header {
+  background-color: $white;
+  
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: 72px;
+  h1 {
+    color: $white;      
+    text-shadow: 2px 2px 1px $darkgray;
+    font-style: italic;
+  //  width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $baseline;
+  }
+  img {
+    max-width: 820px;
+    width: 100%;
+  }
+  p {
+    color: $white; 
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 2px 2px 1px $darkgray;
+    font-size: $large-font-size;
+    font-weight: $bold-font-weight;
+  }
+  .single-column {
+    max-width: 800px;
+    margin: 0 auto;
+    ul li {
+      text-align: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  .one-half {
+    width: 620px;
+    float: left;
+    margin-right: $baseline * 2;
+    @include media("<1040px") {                                    
+      float: none; 
+      width: 100%;
+      margin-right: 0;
+    }
+    @include media(">=1040px","<=1320px") {
+      width: 48%;
+      margin-right: $baseline;
+    }
+    h3 {
+      background-color: $lightgray;
+      color: $color1;
+      margin-bottom: $baseline / 2;
+    }
+    &.last {
+      margin-right: 0;
+      @include media(">=1040px","<=1320px") {
+        margin-left: $baseline;
+      }
+    }
+  }
+  .one-third {
+    width: calc(28% + #{$baseline * 2});
+    float: left;
+    margin-right: $baseline * 2;
+    h3 {
+      background-color: $lightgray;
+      color: $color1;
+      margin-bottom: $baseline / 2;
+    }
+    &.last {
+      margin-right: 0;
+    //  width: 33%;
+    }
+    @include media("<1040px") {                                    
+      float: none; 
+      width: 100%;
+      margin-right: 0;
+    }
+    @include media(">=1040px","<=1320px") {
+    //  width: 31%;
+    //  margin-right: $baseline;
+      float: none;
+      width: 800px;
+      margin: 0 auto;
+      &.last {
+        margin-right: auto;
+      }
+    }
+  }
+/*  .column-1, .column-2 {
+    width: 620px;
+    float: left;
+    margin-right: $baseline * 2;
+    @include media("<1040px") {                                    
+      float: none; 
+      width: 100%;
+      margin-right: 0;
+    }
+    @include media(">=1040px","<=1320px") {
+      width: 48%;
+      margin-right: $baseline;
+    }
+    h3 {
+      background-color: $lightgray;
+      color: $color1;
+      margin-bottom: $baseline / 2;
+    }
+  }
+  .column-2 {
+    margin-right: 0;
+    @include media(">=1040px","<=1320px") {
+      margin-left: $baseline;
+    }
+  }*/
+  
+  ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    li {
+      color: $white;
+      font-size: $large-font-size;
+      text-align: left;
+      border-bottom: $color1 1px solid;
+      margin: $baseline / 2 0;
+      padding: 0 $baseline / 2 $baseline / 2;
+      @include media("<640px") {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      &:last-of-type {
+        border-bottom: 0;
+      }
+    } 
+  }
+  .container {
+    display: table;
+    height: auto;
+    background: rgba(13, 97, 173, 0.8);
+    width: 100%;
+  }
+  .inner {
+    padding: $baseline * 3 0;
+    text-align: center;
+    //display: table-cell;
+    vertical-align: middle;  
+    width: 1280px;
+    margin: 0 auto;
+    @include media("<=1320px") {
+      width: calc(100% - #{$baseline * 2});
+    }
+    @include pie-clearfix;
+  }
+}
+
+
+///
+// Homepage
+///
+body.home section.panel .wrapper .inner p {
+  font-weight: $bold-font-weight;
+  //font-size: $large-font-size;
+  text-align: center;
+  text-shadow: 0.5px 0.5px 0px $lightgray;
+
+}
+
+///
+// Private Charter Page
+///
+.page-private-charter {
+  .entry-header .single-column ul li {
+  //  text-align: center;
+  }
+}
+
+///
+// Charter Fleet Page
+///
+.page-charter-fleet {
+/*  header {
+    img {
+      width: 200px;
+    }
+  }*/
+  .entry-content {
+    //margin: 0 auto;
+    //width: calc(100% - #{$baseline * 2});
+    width: 100%;
+    margin: $baseline * 2 auto $baseline;
+    h2 {
+      text-align: center;
+      width: 1240px;
+      margin: 0 auto $baseline;
+      @include media("<=1320px") {
+        width: calc(100% - #{$baseline * 2});
+      }
+     // width: calc( 100% - #{$baseline * 4});
+      border-bottom: 1px solid $lightgray; 
+      line-height:0.1em; 
+      padding-top: $baseline / 2;
+      font-style: italic;
+      span {
+        background: $white;
+        padding: 0 10px;
+      }
+    }
+    .grid-container {
+      width: 1280px;
+      @include pie-clearfix;
+      @include media("<640px") {
+        width: 100%;
+      }
+      @include media(">=640px","<=1320px") {
+        width: 640px;
+      }
+      @include media(">=1920px","<2560px") {
+        width: 1920px;
+      }
+      @include media(">=2560px") {
+        width: 2560px;
+      }
+      margin: 0 auto;
+    }
+    section.aircraft {
+      width: 640px;
+     //float: left;
+      padding: $baseline / 2 $baseline;
+      @include media("<640px") {
+        padding: 0;
+        //width: calc(100% - #{$baseline * 2});
+        width: 100%;
+      }
+      display: inline-block;
+      &:nth-child(odd) {
+      //  float: right;
+      }
+      h3 {
+        background: $color1;
+        color: $white;
+        font-size: 22px;
+        padding: 4px;
+        text-shadow: none;  
+        text-align: center;
+        margin-bottom: 0;
+        border-top-left-radius: $default-border-radius;
+        border-top-right-radius: $default-border-radius;
+      }
+      .aircraft-image {
+        background: $verylightgray;
+        padding-bottom: 5px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: $baseline * 9;
+        width: 100%;
+      }
+      .description {
+        padding: $baseline / 2;
+        @include media("<640px") {
+          padding: $baseline / 2 $baseline 0;
+        }
+        padding-bottom: 0;
+        background: $verylightgray;
+      //  border-bottom: 2px solid $color1;
+        display: table;
+        width: 100%;
+        .slideshow {
+          width: calc(100% + #{$baseline});
+          padding-top: $baseline / 2;
+          background: $color1;
+          margin-left: -$baseline / 2;
+          margin-right: -$baseline / 2;
+          @include media("<640px") {
+            margin-left: -$baseline;
+          //  margin-right: -$baseline;
+            padding-right: $baseline / 2;
+            width: calc(100% + #{$baseline * 2});
+          }
+          margin-top: $baseline;
+          display: inline-block;
+          clear: both;
+          border-bottom-left-radius: $default-border-radius;
+          border-bottom-right-radius: $default-border-radius;
+          h5 {
+            color: $lightgray;
+            margin-top: 0;
+            margin-bottom: 0;
+            text-align: center;
+            text-shadow: none;
+          }
+        }
+        .gallery {
+         // border-top: 1px solid $lightgray;
+          padding: $baseline / 2;
+          margin-bottom: 0;
+          @include media("<640px") {
+            padding-right: 0;
+          }
+          img {
+            width: 100%;
+          }
+        }
+      }
+      .features {
+        width: 280px;
+        float: left;
+        margin-right: $baseline / 2;
+        @include media("<640px") {
+          float: none;
+          width: 100%;
+          margin-right: 0;
+          //padding-left: $baseline;
+        }
+        ul {
+          margin-left: 0;
+          padding-left: 0;
+          list-style: none;
+          
+          li {
+            background-color: $white;
+            border-bottom: $verylightgray 1px solid;
+            width: 140px;
+            @include media("<640px") {
+              width: 50%;
+            }
+            text-align: center;
+            float: left;
+            padding: 4px;
+            &:nth-child(odd) {
+              text-transform: uppercase;
+              font-weight: $bold-font-weight;
+              text-align: right;
+            }
+          } 
+        }
+      }
+      .add-ons, .seating {
+        width: 280px;
+        float: right;
+        margin-left: $baseline / 2;
+        display: inline-block;
+        margin-top: $baseline / 2;
+        @include media("<640px") {
+          margin-top: $baseline;
+        }
+        @include media("<=1320px") {
+          
+        }
+        p {
+          margin-bottom: 0;
+        }
+        @include media("<640px") {
+          float: none;
+          width: 100%;
+          margin-left: 0;
+        }
+        h5 {
+          margin-top: 0;
+          margin-bottom: $baseline / 4;
+        }
+        ul {
+          margin-left: $baseline;
+          padding-left: 0;
+          li {
+            font-size: $small-font-size;
+          }
+        }
+        @include pie-clearfix;
+      }
+      .seating {
+       // margin-bottom: $baseline / 2;
+        margin-top: 0;
+        display: inline-block;      
+        @include media("<=1320px") {
+          margin-top: $baseline / 2;
+        }
+        h5 {
+          margin-bottom: 0;
+        }
+        img {
+          margin-top: -$baseline / 2;
+          width: 100%;
+        }
       }
     }
   }
 }
 
-//Pages
-.entry-header h1 {
-  text-align: center;
+
+///
+// Aircraft Rental Page
+///
+.page-aircraft-rental {
+  @extend .page-charter-fleet;
+  .entry-content section.aircraft .aircraft-image {
+    height: $baseline * 20;
+  }
 }
-/*section.panel {
-	height: 100%;
-	width: 100%;
-  margin-bottom: 200px;
-  text-align: center;
-}*/
+
+
+///
+// Aircraft Sales Page
+///
+.page-aircraft-sales {
+  .entry-content {
+    //margin: 0 auto;
+    //width: calc(100% - #{$baseline * 2});
+    width: 100%;
+    margin: $baseline * 2 auto $baseline;
+  } 
+  .entry-header .container .inner {
+    width: 800px;
+    margin: 0 auto;
+    @include media("<840px") {
+      width: calc(100% - #{$baseline * 2});
+    }
+    p {
+      text-align: left;
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+    > div {
+      display: inline-block;
+      padding: $baseline;
+      border: 1px solid $lightgray;
+      figure, img, figcaption {
+        width: 260px !important;
+      }
+      .contact-info {
+/*        background-color: $white;*/
+        text-align: left;
+        span.phone {
+          color: $white;
+          &:before {
+            font: $font-awesome;
+            content: '\f095';
+            margin-right: 10px;
+            margin-left: 2px;
+          }
+        }
+        span.email {
+          margin-bottom: $baseline / 2;
+          display: inline-block;
+          &:before {
+            font: $font-awesome;
+            content: '\f0e0';
+            margin-right: 8px;
+          }
+        }
+        font-size: $large-font-size;
+        a {
+          color: $verylightgray;
+          &:hover, &:focus {
+            color: $white;
+          }
+        }
+      }
+      @include media("<640px") {
+        padding: 0;
+        border: 0;
+        figure, img, figcaption {
+          width: 180px !important;
+        }
+        .wp-caption img[class*="wp-image-"] {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  h2 {
+    text-align: center;
+    width: 1240px;
+    margin: 0 auto $baseline;
+    @include media("<=1320px") {
+      width: calc(100% - #{$baseline * 2});
+    }
+   // width: calc( 100% - #{$baseline * 4});
+    border-bottom: 1px solid $lightgray; 
+    line-height:0.1em; 
+    padding-top: $baseline / 2;
+    font-style: italic;
+    span {
+      background: $white;
+      padding: 0 10px;
+    }
+  }
+  .grid-container {
+    width: 1280px;
+    @include pie-clearfix;
+    @include media("<640px") {
+      width: 320px;
+    }
+    @include media(">=640px","<980px") {
+      width: 640px;
+    }
+    @include media(">=980px","<1300px") {
+      width: 960px;
+    }
+/*    @include media(">=2560px") {
+      width: 2560px;
+    }*/
+    margin: 0 auto;
+  }
+  .notice {
+    font-size: $large-font-size;
+    color: $mediumgray;
+    font-style: italic;
+    padding: $baseline * 2 0 $baseline * 4;
+    text-align: center;
+  }
+
+  section.aircraft {
+    width: 320px;
+   //float: left;
+    padding: $baseline / 2 $baseline;
+    @include media("<640px") {
+/*      padding: 0;
+      //width: calc(100% - #{$baseline * 2});
+      width: 100%;*/
+    }
+    display: inline-block;
+    img {
+      height: 160px !important;
+      object-fit: cover;
+    }
+    h3 {
+      background: $color1;
+      color: $white;
+      font-size: $normal-font-size;
+      font-weight: $normal-font-weight;
+      padding: 4px;
+      text-shadow: none;  
+      text-align: center;
+      margin-bottom: 0;
+      border-top-left-radius: $default-border-radius;
+      border-top-right-radius: $default-border-radius;
+    }
+    .aircraft-image {
+      background: $verylightgray;
+      padding-bottom: 5px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: $baseline * 8;
+      width: 100%;
+    }
+    .description {
+      .button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+////
+//  Request a Quote Page
+////
+.page-request-a-quote {
+ 
+  .entry-header {
+//    background-attachment: fixed;
+    .container {
+      background: none;
+      .inner {
+        max-width: 1280px;
+        @include media("<1240px") {
+          width: calc(100% - #{$baseline * 2});
+        }
+        margin: 0 auto;
+
+
+        display: table;
+       // height: auto;
+       // display: none;
+        //@include visually-hidden;
+
+    /*  &.expand {
+        .inner {
+          display: table;
+          //max-height: 300px;
+          height: auto;
+    //      padding-bottom: $baseline;
+        }
+        margin-top: -1px;
+      }*/
+
+        ul {
+          list-style: none;
+          margin: 0;
+          padding-left: 0;
+          li {
+            float: left;
+            width: 18%;
+            margin: 0 0.5%;
+            border-bottom: 0;
+            padding: 0;
+            @include media("<800px") {
+              float: none;
+              width: 100%;
+              margin: 0;
+            }
+            &.quote-comments {
+              float: none;
+              width: calc(100% - #{$baseline * 2});
+            }
+          }
+        }
+        h4 {
+          color: $verylightgray;
+          text-transform: uppercase;
+          text-align: center;
+          margin-top: $baseline * 1.5;
+        }
+        //@include transition(max-height .2s);
+        &.expand {
+      /*    display: block;
+          //max-height: 300px;
+          height: 100%;
+          padding-bottom: $baseline;*/
+      /*    margin-top: -1px;*/
+        }
+        input, select { 
+          width: 100%;
+
+        //  @include media("<=1")
+          margin: $baseline / 2 $baseline $baseline / 2 0;
+          background: $color2;
+          border-color: $lightgray;
+          color: $white;
+          @include media("<800px") {
+          //  width: calc(100% - #{$baseline * 2});
+            margin: $baseline / 2 0 $baseline / 2;
+          }
+        }
+        input[type="text"] {
+          width: 100%;
+
+          @include opacity(0.9);
+          &:focus {
+            border-color: $white;
+            color: $white;
+          }
+        }
+        input[type="number"] {
+          @include media("<800px") {
+            width: 100%;
+          }
+        }
+        textarea {
+          width: 100%;
+          border-color: $lightgray;
+          color: $lightgray;
+          &:focus {
+            border-color: $white;
+            color: $white;
+          }
+
+        }
+        .ginput_container_date {
+          //display: inline-block;
+          //margin-right: -17px;
+      /*    img {
+            position: relative;
+            left: -46px;
+            top: 3px;
+          }*/
+       //   margin-right: -22px;
+          margin-bottom: -24px;
+          &:after {
+            font: $font_awesome;
+            color: $lightgray;
+            content: "\f073";
+            position: relative;
+            top: -43px;
+            left: 142px;
+            display: inline;
+/*            @include media("<768px") {
+              left: 93%;
+            }
+            @include media(">=768px", "<1024px") {
+              left: 85%;
+            }*/
+          }
+        }
+        .gf_repeater_add, .gf_repeater_remove {
+          span {
+            margin-top: $baseline;
+            display: inline-block;
+            position: relative;
+            top: -12px;
+            color: $color4;
+            @include transition(color, .2s);
+            font-size: $normal-font-size;
+            //margin-right: $baseline;
+            text-shadow: 0.5px 0.5px 0px $darkgray;
+            &:hover {
+              color: $white;
+            }
+          }
+        }
+        .gf_repeater_add .gf_repeater_add_default, .gf_repeater_remove .gf_repeater_remove_default   {
+          background-size: 2em 2em;
+          height: 2em;
+          width: 2em;
+        }
+        .ginput_container_repeater-end {
+          margin-right: -100px;
+          @include media("<768px") {
+            margin-right: 0;
+          }
+        }
+        .gf_repeater_remove {
+         // margin-left: $baseline;
+         display: block;
+        }
+        .validation_message, .validation_error {
+          color: $color4;
+        }
+        .validation_message {
+          font-size: $small-font-size;
+          display: block;
+          width: 100%;        
+        }
+        .gform_confirmation_message {
+          color: $color4;
+          font-style: italic;
+          margin: $baseline * 2 0;
+          font-size: $large-font-size;
+          .button {
+            color: $verylightgray;
+            border-color: $lightgray;
+            font-style: normal;
+            @include transition(border-color, .2s);
+            &:hover {
+              border-color: $verylightgray;
+            }
+          }
+        }
+      /*  .gf_repeater_remove .gf_repeater_remove_default {
+          margin-left: $baseline;
+        }*/
+        .gf_repeater_child_field {
+        //  clear: both;
+      /*    &:last-of-type {
+            @include pie-clearfix;
+          }*/
+        }
+        input[type=submit] {
+          margin: $baseline / 2 auto 0;
+          display: block;
+          width: auto;
+          &:hover {
+            border-color: $white;
+            color: $white;
+          }
+        }
+        .check-add-notes {
+          float: none;
+          width: 100%;
+          clear: both;
+          margin-top: $baseline / 2;
+          ul {
+            padding-left: $baseline / 2;
+
+          }
+        }
+        .gfield_checkbox {
+          li {
+            float: none;
+            width: 100%;
+          }
+          input {
+            width: $baseline;
+            width: $baseline;
+            margin: $baseline / 2 0;
+          }
+          label {
+            text-shadow: 0.5px 0.5px 0px $darkgray;
+            position: static;
+            display: inline-block;
+      /*      position: relative;
+            top: -12px;*/
+            color: $verylightgray;
+            margin-right: $baseline;
+            overflow: visible;
+            width: auto;
+            height: auto;
+          }
+        }
+        li.cb-horizontal {
+          clear: both;
+          float: none !important;
+          width: 100%;
+          @include pie-clearfix;
+          .ginput_container_checkbox {
+            ul li {
+              text-align: left;
+              float: left;
+              width: auto;
+            }
+          }
+          .gfield_checkbox {
+            padding-left: $baseline / 2;  
+          }
+        }  
+        li.name-group {
+          width: calc(38% + #{$baseline});
+          @include media("<800px") {
+            width: 100%;
+          }
+          > div {
+            > span {
+              width: calc(50% - 6px);
+              display: inline-block;
+              float: left;    
+              &:first-of-type {
+                margin-right: 12px;
+              }
+              @include media("<800px") {
+                width: 100%;
+                float: none;
+                &:first-of-type {
+                  margin-right: 0;
+                }
+              }
+            }
+          }
+        }
+        li.time-group {
+          width: auto;
+          padding-right: $baseline;
+          @include media("<800px") {
+            float: left;
+          }
+          .clear-multi {
+            > div {
+              float: left;
+              width: 36px;
+              position: relative;
+              margin-left: $baseline / 2;
+              &:first-of-type {
+                margin-left: 0;
+                margin-right: 4px;
+              }
+              i {
+                font-style: normal;
+                position: absolute;
+                right: -10px;
+                top: 16px;     
+              }
+            }
+          }
+          select {
+            width: auto;
+          }
+        }
+        .city-input {
+          width: 160px;
+          @include media("<800px") {
+            width: 100%;
+          }
+        }
+        .date-input {
+          width: 170px;
+          @include media("<800px") {
+            float: left;
+            margin-right: $baseline / 2;
+          }
+        }
+        .departure-date {
+          @include media("<1220px") {
+            clear: both;
+          }
+        }
+        .return-date {
+          @include media("<860px") {
+            clear: both;
+          }
+        }
+        .number-input {
+          width: 120px;
+          @include media("<860px") {
+            clear: both;
+          }
+          .instruction {   
+            @include visually-hidden;
+          }
+        }
+        .section-break {
+          display: block;
+          width: 100%;
+          border-bottom: 1px solid $color1;
+          margin-bottom: $baseline / 2;        
+          h2 {
+            font-size: $large-font-size;
+            margin-bottom: 0;
+            line-height: 30px;
+          }
+        }
+        .section-break-hide-text {
+          display: block;
+          width: 100%;
+          h2 {
+            @include visually-hidden;
+          }
+        }
+        #close-request-quote {
+          width: $baseline * 2;
+          height: $baseline * 2;
+          color: $lightgray;
+          float: right;
+          position: relative;
+          top: $baseline;
+          span {
+            font-size: $baseline * 2;
+          }
+          &:hover {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}

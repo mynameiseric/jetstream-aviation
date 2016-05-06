@@ -45,6 +45,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 --------------------------------------------------------------*/
 @import "compass";
 
+/*--------------------------------------------------------------
+# Inline Media Queries
+--------------------------------------------------------------*/
+@import "modules/include-media";
+
+
 @import "variables-site/variables-site";
 @import "mixins/mixins-master";
 

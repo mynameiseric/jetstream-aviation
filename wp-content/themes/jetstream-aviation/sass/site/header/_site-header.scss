@@ -8,7 +8,11 @@
   background: $white;
   @include transition(border-color, .2s);
   .container {
-    width: 1280px;
+    max-width: 1320px;
+    padding: 0 $baseline;
+    @include media("<480px") {
+    //  padding: 0 $baseline / 2;
+    }
     margin: 0 auto;
   }
 }
@@ -19,6 +23,16 @@
   height: 50px;
   width: 271px;
   margin-top: 4px;
+  @include media("<400px") {
+    height: 30px;
+    width: 100%;
+    margin-top: 10px;
+  }
+  @include media(">=400px","<480px") {
+    height: 44px;
+    width: 100%;
+    margin-top: 5px;
+  }
 }
 .site-title {
   border: 0;
@@ -42,6 +56,8 @@
 .site-branding {
   margin-top: $baseline / 2;
   margin-bottom: $baseline / 2;
+  float: left;
+  width: 271px;
 }
 .request-quote {
   //max-height: 0;
@@ -55,10 +71,17 @@
   //margin-top: -1px;
  
   .inner {
-    width: 1260px;
+    width: 1200px;
+    @include media("<1240px") {
+      width: calc(100% - #{$baseline * 2});
+    }
     margin: 0 auto;
-    //display: table;
-    display: none;
+    
+    
+    display: table;
+    height: auto;
+   // display: none;
+    //@include visually-hidden;
   }
   &.expand {
     .inner {
@@ -73,8 +96,16 @@
   ul {
     list-style: none;
     margin: 0;
+    padding-left: 0;
     li {
       float: left;
+      width: 24%;
+      margin: 0 0.5%;
+      @include media("<768px") {
+        float: none;
+        width: 100%;
+        margin: 0
+      }
       &.quote-comments {
         float: none;
         width: calc(100% - #{$baseline * 2});
@@ -96,13 +127,21 @@
 /*    margin-top: -1px;*/
   }
   input { 
-    width: 280px;
+    width: 100%;
+
+  //  @include media("<=1")
     margin: $baseline / 2 $baseline $baseline / 2 0;
     background: $color2;
     border-color: $lightgray;
     color: $lightgray;
+    @include media("<768px") {
+      width: calc(100% - #{$baseline * 2});
+      margin: $baseline / 2 0 $baseline / 2;
+    }
   }
   input[type="text"] {
+    width: 100%;
+    
     @include opacity(0.9);
     &:focus {
       border-color: $white;
@@ -128,15 +167,22 @@
       left: -46px;
       top: 3px;
     }*/
-    margin-right: -22px;
+ //   margin-right: -22px;
+    margin-bottom: -24px;
     &:after {
       font: $font_awesome;
       color: $lightgray;
       content: "\f073";
       position: relative;
-      top: 1px;
-      left: -56px;
+      top: -$baseline * 2;
+      left: 90%;
       display: inline;
+      @include media("<768px") {
+        left: 93%;
+      }
+      @include media(">=768px", "<1024px") {
+        left: 85%;
+      }
     }
   }
   .gf_repeater_add, .gf_repeater_remove {
@@ -147,7 +193,7 @@
       top: -12px;
       color: $lightgray;
       @include transition(color, .2s);
-      font-size: 18px;
+      font-size: $normal-font-size;
       //margin-right: $baseline;
       text-shadow: 0.5px 0.5px 0px $darkgray;
       &:hover {
@@ -160,15 +206,32 @@
     height: 2em;
     width: 2em;
   }
+  .ginput_container_repeater-end {
+    margin-right: -100px;
+    @include media("<768px") {
+      margin-right: 0;
+    }
+  }
   .gf_repeater_remove {
-    margin-left: $baseline;
+   // margin-left: $baseline;
+   display: block;
+  }
+  .validation_message, .validation_error {
+    color: $lightgray;
   }
 /*  .gf_repeater_remove .gf_repeater_remove_default {
     margin-left: $baseline;
   }*/
+  .gf_repeater_child_field {
+  //  clear: both;
+/*    &:last-of-type {
+      @include pie-clearfix;
+    }*/
+  }
   input[type=submit] {
     margin: $baseline / 2 auto 0;
     display: block;
+    width: auto;
     &:hover {
       border-color: $white;
       color: $white;
@@ -206,6 +269,22 @@
       height: auto;
     }
   }
+  li.cb-horizontal {
+    clear: both;
+    float: none !important;
+    width: 100%;
+    @include pie-clearfix;
+    .ginput_container_checkbox {
+      ul li {
+        text-align: left;
+        float: left;
+        max-width: 175px;
+      }
+    }
+    .gfield_checkbox {
+      padding-left: $baseline / 2;  
+    }
+  }  
   #close-request-quote {
     width: $baseline * 2;
     height: $baseline * 2;

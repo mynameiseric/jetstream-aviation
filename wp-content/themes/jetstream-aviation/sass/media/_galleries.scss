@@ -1,5 +1,6 @@
 .gallery {
 	margin-bottom: 1.5em;
+  display: inline-block;
 }
 
 .gallery-item {
@@ -7,6 +8,8 @@
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
+  margin: 0;
+  padding: 0 3px;
 
 	.gallery-columns-2 & {
 		max-width: 50%;
@@ -42,5 +45,71 @@
 }
 
 .gallery-caption {
-	display: block;
+	display: none;
+/*  color: $lightgray;
+  font-size: $small-font-size;*/
+}
+#cboxContent {
+  margin-top: $baseline * 2;
+}
+#cboxTitle {
+  color: $color1;
+  font-size: $normal-font-size;
+  width: 75%;
+}
+#cboxLoadedContent {
+  background: $color1;
+  padding: $baseline;
+}
+#cboxClose {
+  background: none;
+  color: transparent;
+  text-indent: 0;
+  &:after {
+    font: $font-awesome;
+    content: "\f00d";
+    color: $color2;
+    font-size: $baseline * 2;
+    width: $baseline * 2;
+    height: $baseline * 2;
+    right: 0;
+    top: -$baseline;
+    position: absolute;
+    @include transition(color, .2s);
+  }
+  &:hover, &:focus {
+    &:after {
+      color: $color3;
+    }
+  }
+}
+#cboxPrevious {
+  background: none;
+  color: transparent;
+  text-indent: 0;
+  &:after {
+    font: $font-awesome;
+    content: "\f054";
+    color: $color2;
+    font-size: 29px;
+    width: 29px;
+    height: 29px;
+    right: 10px;
+    top: -12px;
+    position: absolute;
+    @include transition(color, .2s);
+  }
+  &:hover, &:focus {
+    &:after {
+      color: $color3;
+    }
+  }
+}
+#cboxNext {
+  @extend #cboxPrevious;
+  &:after {
+    content: "\f053";
+    color: $color2;
+    right: 70px;
+  }
 }

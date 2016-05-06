@@ -25,7 +25,23 @@ textarea {
 		color: $color__text-input-focus;
 	}
 }
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+::-webkit-input-placeholder {
+   color: $mediumgray;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: $mediumgray;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: $mediumgray;  
+}
+:-ms-input-placeholder {  
+   color: $mediumgray;  
+}
 select {
 	border: 2px solid $color__border-input;
  // border: 0;
@@ -85,7 +101,7 @@ label {
 .ui-datepicker {
   width: 280px;
   background: $verylightgray;
-  border-radius: 2px;
+  @include border-radius(2px);
   .ui-datepicker-header {
     padding: 4px;
     border: 2px solid $verylightgray;

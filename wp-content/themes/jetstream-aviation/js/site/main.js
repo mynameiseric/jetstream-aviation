@@ -5,7 +5,8 @@
 var $window = jQuery(window)
 ,   windowDimensions = getWindowDimensions()
 ,   isIE = navigator.userAgent.indexOf('Trident', 'msie') != -1 ? true : false
-,   modalOverlay = $('<div id="modal-overlay">');
+,   modalOverlay = $('<div id="modal-overlay">')
+,   requestFormFlight = 1;
 
 window.gwrf;
 
@@ -18,8 +19,6 @@ $(window).load(function(){
   ,   windowDimensions = getWindowDimensions();
   
   
-  //Call layoutHandler() function to handle events for altering layout on window.load and window.resize
-//  layoutHandler( false );
 
 
   //------------------------------------------------------------------------------
@@ -47,26 +46,92 @@ $(window).load(function(){
       $('html').css({ overflow: '' });
   });
   
-  $('#close-request-quote').click(function(e){
-    $('#request-quote').slideUp(200).toggleClass('expand');
-    $('#masthead').toggleClass('quote-panel-expanded');
-    e.preventDefault();
-  });
-  $('.request-quote-link a').click(function(e){
-    if( $('#masthead').hasClass('quote-panel-expanded') ) {
-      $('#request-quote').slideUp(200).toggleClass('expand');
+  //Call layoutHandler() function to handle events for altering layout on window.load and window.resize
+  layoutHandler( false );
+  
+	$('#menu-toggle').click( function() {
+		$(this).toggleClass('open');
+    //add overlay div and disable pointer events on all non-primary menu elements 
+    if($("#site-navigation").hasClass('toggled')) {
+      $('body').append(modalOverlay).addClass('disable');
     }
     else {
-      $('#request-quote').slideDown(200).toggleClass('expand');
-      $("html, body").animate({ scrollTop: 0 }, 200);
+      modalOverlay.remove();
+      $('body').removeClass('disable');
     }
-    $('#masthead').toggleClass('quote-panel-expanded');
+
+	});
+  
+  $('.next-panel-arrow').click( function(e) {
     e.preventDefault();
+    var nextPanel = $(this).next();
+    $('html, body').animate({
+        scrollTop: nextPanel.offset().top - 72
+      //  scrollTop: nextPanel.offset().top
+    }, 500);
   });
   
-  //$('.gform_wrapper').css('display', 'block', 'important');
+  $('#footer-arrow').click( function(e) {
+    e.preventDefault();
+    var nextPanel = $('.site-footer');
+    $('html, body').animate({
+        scrollTop: nextPanel.offset().top - 72
+       //scrollTop: nextPanel.offset().top
+    }, 500);
+  });
   
+  $("section.panel").lazyload({
+    effect : "fadeIn"
+  });
 
+  // init Isotope Masonry
+  if( $( '.grid-container' ).length ) {
+    var $grid = $( '.grid-container' ).isotope({
+      "itemSelector": "section.aircraft",
+      "layoutMode": "masonry"  
+    });
+    // layout Isotope after each image loads
+    $grid.imagesLoaded().progress( function() {
+      $grid.isotope();
+    });
+  }
+
+  //Add some custom javascript to support the Quote form
+  $('.gf_repeater_add span').click( function(e) {
+    e.preventDefault();
+    requestFormFlight++;
+    if( requestFormFlight > 1 ) {
+     // alert('WHA?');
+      setTimeout( function() { 
+        var selectEl = $('.return-date-time select');
+        $( selectEl ).append($( '<option>', {
+            value: '',
+            text: ''
+        }));
+        $( selectEl ).val('');
+          $('.return-date-time').hide(200);
+      }, 200);
+    }
+  });
+  
+  $('.gf_repeater_remove span').click( function(e) {
+    e.preventDefault();
+    requestFormFlight--;
+    if( requestFormFlight === 1 ) {
+      setTimeout( function() { 
+       // var selectEl = $('.return-date-time select');
+        $('.return-date-time select option[value=""]').remove();
+        $('.return-date-time').show(200);
+      }, 200);
+    }
+  });
+  
+  //Open child menus on mobile nav
+  $('.expand-children').click(function(e) {
+    e.preventDefault();
+    $(this).toggleClass( 'minus' );
+    $(this).next().toggleClass( 'open' );
+  });
 });//window.onload();
 
 
@@ -139,12 +204,15 @@ function getUrlParam(name) {
 //------------------------------------------------------------------------------
 
 function layoutHandler( onresize ) {
-  
-  //Move 1st related article inline to article body on page load
-  if( !onresize ) {
-  }
-  else {
-  } 
+  $('section.panel').css('height', windowDimensions.height - 72);
+
+//  if( !onresize ) {
+//   // getWindowDimensions();
+//    $('section.panel').css('height', windowDimensions.height - 72);
+//  }
+//  else {
+//    $('section.panel').css('height', windowDimensions.height - 72);
+//  } 
 }
 
 
@@ -178,8 +246,8 @@ function removeEmptyColorboxTitles() {
 //
 //------------------------------------------------------------------------------
 
-//var doit;
-//window.onresize = function(){
-//  clearTimeout(doit);
-//  doit = setTimeout( layoutHandler( true ), 100);
-//};
+var doit;
+window.onresize = function(){
+  clearTimeout(doit);
+  doit = setTimeout( layoutHandler( true ), 100);
+};

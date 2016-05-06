@@ -1,16 +1,19 @@
 .wp-caption {
-	margin-bottom: 1.5em;
+	margin-bottom: 0;
 	max-width: 100%;
 
 	img[class*="wp-image-"] {
 		@include center-block;
 	}
-
 	.wp-caption-text {
-		margin: 0.8075em 0;
+    text-align: center;
+    color: $verylightgray;
+    background: $color1;
+    margin: 0;
+    padding: $baseline / 2 0;
 	}
 }
 
-.wp-caption-text {
-	text-align: center;
+figure {
+  margin: 0 $baseline * 2 0 0;
 }

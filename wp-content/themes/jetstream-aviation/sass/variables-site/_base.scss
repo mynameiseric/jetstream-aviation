@@ -29,6 +29,9 @@ $darkgray: #404040;
 $color1: #062c4e; //dark blue
 $color2: lighten( $color1, 20% );
 $color3: lighten( $color1, 40% );
+$color4: #f8fa56; //yellow
+$color5: #08630d; //green
+$color6: lighten( $color5, 10% );
 
 $color__background-body: $white;
 $color__background-screen: #f1f1f1; 
@@ -45,10 +48,10 @@ $color__link-visited: $color2;
 $color__link-hover: $color3;
 $color__text-main: $darkgray;
 
-$color__border-button: $color1;
-$color__border-button-hover: $color2;
-$color__border-button-focus: $color2;
-$color__border-input: $color1;
+$color__border-button: $color2;
+$color__border-button-hover: $color3;
+$color__border-button-focus: $color3;
+$color__border-input: $color2;
 $color__border-abbr: $mediumgray;
 
 //BORDER RADIUS
@@ -56,8 +59,8 @@ $default_border_radius: 2px;
 
 //HEADERS
 
-$h1-font-size: 44px;
-$h1-line-height: 48px;
+$h1-font-size: 48px;
+$h1-line-height: 54px;
 
 $h2-font-size: 40px;
 $h2-line-height: 44px;
